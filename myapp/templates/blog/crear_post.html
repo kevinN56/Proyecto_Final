@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if object %}
+Editar publicación
+{% else %}
+Nueva publicación
+{% endif %}
+{% endblock %}
+
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>
+            {% if object %}
+            Editar publicación
+            {% else %}
+            Crear publicación
+            {% endif %}
+        </h2>
+
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {% if form.errors %}
+
+            <div class="form-errors">
+
+                {{ form.errors }}
+
+            </div>
+
+            {% endif %}
+
+            <p>
+                {{ form.titulo.label }}
+                {{ form.titulo }}
+            </p>
+
+
+            <p>
+                {{ form.categoria.label }}
+                {{ form.categoria }}
+            </p>
+
+
+
+            <div class="file-upload">
+
+                <label for="id_imagen">
+                    Subir imagen
+                </label>
+
+                {{ form.imagen }}
+
+            </div>
+
+
+            <!-- Imagen actual al editar -->
+
+            {% if object.imagen %}
+
+            <div class="image-preview">
+
+                <p>Imagen actual:</p>
+
+                <img src="{{ object.imagen.url }}" alt="Imagen actual">
+
+            </div>
+
+            {% endif %}
+
+
+
+            <!-- Vista previa nueva imagen -->
+
+            <div class="image-preview">
+
+                <img id="preview" style="display:none;">
+
+            </div>
+
+
+
+            <p>
+                {{ form.contenido.label }}
+                {{ form.contenido }}
+            </p>
+
+
+            <button type="submit" class="btn-auth">
+
+                Guardar publicación
+
+            </button>
+
+
+        </form>
+
+
+        <p class="auth-text">
+
+            <a href="{% url 'lista_post' %}">
+                ← Volver al blog
+            </a>
+
+        </p>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    const inputImagen = document.querySelector('input[type="file"]');
+
+    const preview = document.getElementById('preview');
+
+
+    if (inputImagen) {
+
+        inputImagen.addEventListener('change', function () {
+
+            const archivo = this.files[0];
+
+
+            if (archivo) {
+
+                preview.style.display = "block";
+
+                preview.src = URL.createObjectURL(archivo);
+
+            }
+
+        });
+
+    }
+
+</script>
+
+
+{% endblock %}

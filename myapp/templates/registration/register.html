@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Crear Usuario</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button class="btn-auth">
+                Registrarse
+            </button>
+
+        </form>
+
+        <p class="auth-text">
+            ¿Ya tienes cuenta?
+            <a href="{% url 'login' %}">
+                Iniciar sesión
+            </a>
+        </p>
+
+    </div>
+
+</div>
+
+{% endblock %}

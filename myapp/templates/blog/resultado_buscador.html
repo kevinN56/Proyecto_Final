@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">
+    Buscar por categoría
+</h2>
+
+
+<form method="GET">
+
+    {{ form.as_p }}
+
+    <button class="btn btn-success">
+        Buscar
+    </button>
+
+</form>
+
+
+<hr>
+
+
+{% if resultados %}
+
+
+<div class="results-container">
+
+
+    {% for post in resultados %}
+
+
+    <div class="result-card">
+
+
+        {% if post.imagen %}
+
+        <img src="{{ post.imagen.url }}" class="result-image">
+
+        {% endif %}
+
+
+
+        <div class="result-content">
+
+
+            <h3>
+
+                <a href="{% url 'detalle_post' post.pk %}">
+                    {{ post.titulo }}
+                </a>
+
+            </h3>
+
+
+
+            <p class="result-category">
+
+                Categoría:
+                {{ post.categoria }}
+
+            </p>
+
+
+            <a href="{% url 'detalle_post' post.pk %}" class="btn-read">
+
+                Leer artículo
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    {% endfor %}
+
+
+</div>
+
+
+{% else %}
+
+
+<p>
+    No se encontraron publicaciones.
+</p>
+
+
+{% endif %}
+
+
+
+{% endblock %}

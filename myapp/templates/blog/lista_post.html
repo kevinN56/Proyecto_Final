@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="blog-container">
+
+
+    <div class="blog-header">
+
+        <h2>
+            Publicaciones
+        </h2>
+
+        <a href="{% url 'crear_post' %}" class="btn-create">
+
+            Crear publicación
+
+        </a>
+
+
+    </div>
+
+
+
+    <div class="posts-container">
+
+
+        {% for post in posts %}
+
+
+        <div class="post-card">
+
+
+            {% if post.imagen %}
+
+            <img src="{{ post.imagen.url }}" class="post-image">
+
+            {% endif %}
+
+
+
+            <div class="post-body">
+
+
+                <h3>
+                    {{ post.titulo }}
+                </h3>
+
+
+                <p>
+                    {{ post.subtitulo }}
+                </p>
+
+
+                <p class="post-info">
+
+                    Categoría:
+                    {{ post.categoria }}
+
+                </p>
+
+
+
+                <p class="post-info">
+
+                    Autor:
+                    {{ post.autor.username }}
+
+                </p>
+
+
+
+                <a href="{% url 'detalle_post' post.pk %}" class="btn-read">
+
+                    Leer artículo
+
+                </a>
+
+
+
+                {% if user == post.autor %}
+
+                <div class="post-actions">
+
+
+                    <a href="{% url 'editar_post' post.pk %}" class="btn-edit">
+
+                        Editar
+
+                    </a>
+
+
+
+                    <a href="{% url 'eliminar_post' post.pk %}" class="btn-delete">
+
+                        Eliminar
+
+                    </a>
+
+
+                </div>
+
+                {% endif %}
+
+
+
+            </div>
+
+
+        </div>
+
+
+        {% empty %}
+
+
+        <div class="empty-post">
+
+            <h3>
+                No existen publicaciones
+            </h3>
+
+            <p>
+                Todavía no se han creado artículos.
+            </p>
+
+        </div>
+
+
+        {% endfor %}
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

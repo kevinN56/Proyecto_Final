@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="page-container">
+
+
+    <div class="profile-card">
+
+
+        {% if object.avatar %}
+
+        <img src="{{ object.avatar.url }}" class="profile-avatar">
+
+        {% endif %}
+
+
+
+        <h2>
+            {{ user.username }}
+        </h2>
+
+
+        <p class="profile-bio">
+            {{ object.bio }}
+        </p>
+
+
+
+        <div class="profile-data">
+
+
+            <p>
+                <strong>Edad:</strong>
+                {{ object.edad }}
+            </p>
+
+
+            <p>
+                <strong>Peso:</strong>
+                {{ object.peso }} kg
+            </p>
+
+
+            <p>
+                <strong>Altura:</strong>
+                {{ object.altura }} cm
+            </p>
+
+
+            <p>
+                <strong>Objetivo:</strong>
+                {{ object.objetivo }}
+            </p>
+
+
+        </div>
+
+
+
+        <a href="{% url 'editar_perfil' %}" class="btn-auth">
+
+            Editar perfil
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+{% endblock %}

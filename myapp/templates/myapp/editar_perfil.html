@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Perfil{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Editar Perfil</h2>
+
+
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+
+            <button class="btn-auth">
+
+                Guardar cambios
+
+            </button>
+
+
+        </form>
+
+
+        <p class="auth-text">
+
+            <a href="{% url 'perfil' %}">
+                Volver al perfil
+            </a>
+
+        </p>
+
+
+    </div>
+
+</div>
+
+
+{% endblock %}

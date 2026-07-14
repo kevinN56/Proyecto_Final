@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Actualizar Avatar{% endblock %}
+
+{% block content %}
+
+<div class="col-md-6 mx-auto">
+
+    <h2>Actualizar Avatar</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button class="btn btn-success">
+
+            Subir Imagen
+
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar publicación{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="delete-card">
+
+        <h2>
+
+            Eliminar publicación
+
+        </h2>
+
+        <p>
+
+            ¿Estás seguro de que deseas eliminar la publicación?
+
+        </p>
+
+        <h4>
+
+            "{{ object.titulo }}"
+
+        </h4>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <button type="submit" class="btn-delete">
+
+                Sí, eliminar
+
+            </button>
+
+            <a href="{% url 'detalle_post' object.pk %}" class="btn-auth">
+
+                Cancelar
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<div class="hero p-5 mb-4 rounded-4 shadow-lg">
+
+    <div class="container text-center">
+
+    <h1 class="display-3 text-white fw-bold">
+
+        Bienvenido a FitLife
+
+    </h1>
+
+    <p class="lead text-light">
+
+    Descubre artículos sobre entrenamiento,
+    nutrición y hábitos saludables.
+
+    </p>
+
+        <a href="{% url 'lista_post' %}" class="btn btn-main">
+
+            Ver publicaciones
+
+        </a>
+
+    </div>
+
+</div>
+<hr>
+
+<div class="search-section">
+
+    <h2>Explorar por categoría</h2>
+
+    <p class="search-text">
+
+        Selecciona una categoría para ver todas sus publicaciones.
+
+    </p>
+
+    <form method="GET" action="{% url 'buscar_categoria' %}" class="search-form">
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-success">
+
+            Ver publicaciones
+
+        </button>
+
+    </form>
+
+</div>
+
+<hr>
+
+<h2 class="mb-4">
+
+    Últimas publicaciones
+
+</h2>
+
+<div class="row">
+
+    {% for post in ultimos_posts %}
+
+    <div class="col-md-4">
+
+        <div class="card shadow mb-4">
+
+            {% if post.imagen %}
+            
+            <img src="{{ post.imagen.url }}" class="card-img-top">
+            
+            {% endif %}
+
+            <div class="card-body">
+
+                <h4>{{ post.titulo }}</h4>
+
+                <p>
+
+                    {{ post.subtitulo }}
+
+                </p>
+
+                <p>
+
+                    <strong>Categoría:</strong>
+
+                    {{ post.categoria }}
+
+                </p>
+
+                <a href="{% url 'detalle_post' post.pk %}" class="btn btn-success">
+
+                    Leer artículo
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="card p-4 text-center">
+
+        Aún no existen publicaciones.
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+<hr>
+
+<div class="row text-center">
+
+    <div class="col-md-4">
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <h3> Entrenamiento</h3>
+
+                <p>
+
+                    Rutinas para todos los niveles.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <h3> Nutrición</h3>
+
+                <p>
+
+                    Aprende a alimentarte mejor.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card">
+
+            <div class="card-body">
+
+                <h3> Vida saludable</h3>
+
+                <p>
+
+                    Consejos para mejorar tu bienestar.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
