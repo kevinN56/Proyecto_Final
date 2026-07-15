@@ -111,10 +111,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 La aplicación se encuentra publicada en:
 
 ```
-https://url-publica-del-proyecto.com
+https://proyecto-final-pmoi.onrender.com
 ```
-
-_(Reemplazar por la URL real cuando sea desplegada)._
 
 # Capturas de pantalla de las Paginas para ver sus Funcionamientos
 
