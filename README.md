@@ -1,4 +1,4 @@
-# FitLife Blog 🏋️‍♂️
+# FitLife Blog
 
 ## Descripción del proyecto
 
@@ -33,13 +33,13 @@ El proyecto permite que adonde cada persona puede registrarse, iniciar sesión y
 ## 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/usuario/nombre-del-proyecto.git
+git https://github.com/kevinN56/Proyecto_Final.git
 ```
 
 Ingresar a la carpeta:
 
 ```bash
-cd nombre-del-proyecto
+cd Proyecto_Final
 ```
 
 ## 2. Crear un entorno virtual
@@ -59,7 +59,7 @@ venv\Scripts\activate
 Linux/Mac:
 
 ```bash
-source venv/bin/activate
+source env/bin/activate
 ```
 
 ## 3. Instalar dependencias
@@ -106,8 +106,6 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 ```
 
-Durante desarrollo Django sirve estos archivos automáticamente.
-
 # URL pública
 
 La aplicación se encuentra publicada en:
@@ -118,13 +116,27 @@ https://url-publica-del-proyecto.com
 
 _(Reemplazar por la URL real cuando sea desplegada)._
 
-# Autor
+# Capturas de pantalla de las Paginas para ver sus Funcionamientos
 
-Desarrollado como proyecto final utilizando Django.
+## Página de inicio
 
-```
+![Página de inicio](Capturas_de_Pantalla/inicio1.png)
+![Página de inicio](Capturas_de_Pantalla/inicio2.png)
+![Página de inicio](Capturas_de_Pantalla/inicio3.png)
 
----
+## Blog
 
-Para tu entrega del curso, además agregaría una sección de **"Capturas de pantalla"** y otra de **"Estructura del proyecto"**, porque tu proyecto ya tiene bastantes funcionalidades y ayuda a demostrar el trabajo realizado.
-```
+![Listado de publicaciones](Capturas_de_Pantalla/blogs.png)
+
+## Detalle de una publicación
+
+![Detalle de publicación](Capturas_de_Pantalla/detalle1.png)
+![Detalle de publicación](Capturas_de_Pantalla/detalle2.png)
+
+## Perfil
+
+![Perfil de usuario](Capturas_de_Pantalla/perfil.png)
+
+## Buscar por categoría
+
+![Buscar por categoría](Capturas_de_Pantalla/buscar.png)
