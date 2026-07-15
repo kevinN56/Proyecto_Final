@@ -149,7 +149,8 @@ USE_TZ = True
 
 STATIC_URL = os.getenv("STATIC_URL", "/static/")
 STATIC_ROOT = Path(os.getenv("STATIC_ROOT", str(BASE_DIR / "staticfiles")))
-
+MEDIA_URL = os.getenv("MEDIA_URL", "/media/")
+MEDIA_ROOT = Path(os.getenv("MEDIA_ROOT", str(BASE_DIR / "media")))
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
@@ -161,8 +162,7 @@ LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "inicio"
 LOGOUT_REDIRECT_URL = "login"
 
-MEDIA_URL = os.getenv("MEDIA_URL", "/media/")
-MEDIA_ROOT = Path(os.getenv("MEDIA_ROOT", str(BASE_DIR / "media")))
+
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
