@@ -13,7 +13,7 @@ db.sqlite3
 media/
 
 # Variables de entorno
-.env
+env
 
 # Archivos de VS Code
 .vscode/
