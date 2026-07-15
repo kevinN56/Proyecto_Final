@@ -1,23 +1,60 @@
-# Entorno virtual
-venv/
-env/
-.venv/
-
-# Python
+############################
+# Python / Django
+############################
 __pycache__/
 *.py[cod]
+*$py.class
 
-# Django
-*.log
+# Virtualenv / Pipenv / entorno
+venv/
+.venv/
+env/
+.env/
+pipenv/
+Pipfile.lock
+
+############################
+# Archivos de base de datos
+############################
 db.sqlite3
+*.sqlite3
+
+############################
+# Archivos estáticos y media
+############################
+staticfiles/
 media/
 
-# Variables de entorno
-env
+############################
+# Logs y runtime
+############################
+*.log
+*.pot
+*.mo
+*.pid
+*.py,cover
+coverage.xml
+.coverage
+.coverage.*
+htmlcov/
 
-# Archivos de VS Code
+############################
+# IDE / Editor
+############################
 .vscode/
+.idea/
+*.iml
 
-# Migraciones (opcional)
-# app/migrations/*
-# !app/migrations/__init__.py
+############################
+# Sistema operativo
+############################
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+############################
+# Otros
+############################
+*.bak
+*.swp
+*.tmp
