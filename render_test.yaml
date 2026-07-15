@@ -1,61 +1,58 @@
-# clase final - 21 infraestructura como codigo para Render
-# Este archivo permite crear/configurar el servicio automaticamente desde el repo.
-
 services:
   - type: web
-    # clase final - 21 nombre del servicio en Render (podes cambiarlo)
-    name: appcoder-django
+    name: mi-proyecto
     runtime: python
     plan: free
     region: oregon
     branch: main
 
-    # clase final - 21 comando de build (usa el script versionado)
     buildCommand: bash build.sh
+    startCommand: gunicorn mi_proyecto.wsgi:application
 
-    # clase final - 21 comando de inicio WSGI en produccion
-    startCommand: gunicorn AppCoder.wsgi:application
-
-    # clase final - 21 chequeo de salud basico
     healthCheckPath: /
 
     envVars:
-      # clase final - 21 modo produccion
       - key: DJANGO_ENV
         value: production
 
-      # clase final - 21 seguridad y configuracion Django
       - key: DEBUG
         value: "False"
-      - key: ALLOWED_HOSTS
-        value: appcoder-django.onrender.com
-      - key: CSRF_TRUSTED_ORIGINS
-        value: https://appcoder-django.onrender.com
 
-      # clase final - 21 secretos (setear manualmente en Render)
+      - key: ALLOWED_HOSTS
+        value: mi-proyecto.onrender.com
+
+      - key: CSRF_TRUSTED_ORIGINS
+        value: https://mi-proyecto.onrender.com
+
       - key: SECRET_KEY
         sync: false
 
-      # clase final - 21 estaticos/media
       - key: STATIC_URL
         value: /static/
+
       - key: STATIC_ROOT
         value: /opt/render/project/src/staticfiles
+
       - key: MEDIA_URL
         value: /media/
+
       - key: MEDIA_ROOT
         value: /opt/render/project/src/media
 
-      # clase final - 21 base de datos (completar con tu servicio PostgreSQL)
       - key: DB_ENGINE
         value: django.db.backends.postgresql
+
       - key: DB_NAME
         sync: false
+
       - key: DB_USER
         sync: false
+
       - key: DB_PASSWORD
         sync: false
+
       - key: DB_HOST
         sync: false
+
       - key: DB_PORT
         value: "5432"

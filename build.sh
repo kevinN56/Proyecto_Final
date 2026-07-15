@@ -21,8 +21,8 @@ python manage.py shell << 'EOF'
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
-username = "admin"
-password = "1234"
+username = "kevin"
+password = "daiki123456"
 email = "admin@gmail.com"
 
 if not User.objects.filter(username=username).exists():

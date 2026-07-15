@@ -35,7 +35,10 @@ ENV_FILE = BASE_DIR / ".env.prod" if ENVIRONMENT == "production" else BASE_DIR /
 _load_env_file(ENV_FILE)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-pwz98=8rs$4f15h+p@9#=#zjya@9(v1fh)dgnh_(_td*8_5tb*'
+SECRET_KEY = os.getenv(
+    "SECRET_KEY",
+    "django-insecure-pwz98=8rs$4f15h+p@9#=#zjya@9(v1fh)dgnh_(_td*8_5tb*"
+)
 
 def env_bool(name: str, default: bool = False) -> bool:
     return os.getenv(name, str(default)).strip().lower() in {"1", "true", "yes", "on"}
@@ -46,9 +49,9 @@ def env_list(name: str, default: str = "") -> list[str]:
     return [item.strip() for item in value.split(",") if item.strip()]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env_bool("DEBUG", True)
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env_list("ALLOWED_HOSTS", "127.0.0.1,localhost")
 CSRF_TRUSTED_ORIGINS = env_list("CSRF_TRUSTED_ORIGINS", "")
 
 
@@ -72,6 +75,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'mi_proyecto.urls'
@@ -99,8 +103,12 @@ WSGI_APPLICATION = 'mi_proyecto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.getenv('DB_NAME', str(BASE_DIR / 'db.sqlite3')),
+        'USER': os.getenv('DB_USER', ''),
+        'PASSWORD': os.getenv('DB_PASSWORD', ''),
+        'HOST': os.getenv('DB_HOST', ''),
+        'PORT': os.getenv('DB_PORT', ''),
     }
 }
 
@@ -139,13 +147,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = os.getenv("STATIC_URL", "/static/")
+STATIC_ROOT = Path(os.getenv("STATIC_ROOT", str(BASE_DIR / "staticfiles")))
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / "static",
 ]
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 LOGIN_URL = "login"
 LOGIN_REDIRECT_URL = "inicio"
