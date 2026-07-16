@@ -47,13 +47,13 @@ cd Proyecto_Final
 Windows:
 
 ```bash
-python -m venv venv
+python -m venv env
 ```
 
 Activar entorno virtual:
 
 ```bash
-venv\Scripts\activate
+source env\Scripts\activate
 ```
 
 Linux/Mac:
@@ -68,6 +68,12 @@ Ejecutar:
 
 ```bash
 pip install -r requirements.txt
+```
+
+Actualizar:
+
+```bash
+pip freeze > requirements.txt
 ```
 
 ## 4. Realizar migraciones
